@@ -1,0 +1,253 @@
+//
+////    @Given("hit POST method {string} {string}to create a request")
+////    public void hit_POST_method_to_create_a_request(String resource, String fileName) {
+////
+////        response = RestAssured.given()
+////                .contentType(ContentType.JSON)
+////                .header("x-api-key", Config.getProperty("x-api-key"))
+////                .and()
+////                .body(ReaderTXTFile.readTXT(Config.getProperty("txtBodiesPath") + fileName))
+////                .post(Config.getProperty("baseURL") + resource);
+////
+////        System.out.println(response.prettyPrint());
+////        Assert.assertEquals("Status code NOT 200", 200, response.statusCode());
+////
+////    }
+//
+//    @Then("verify if the request successfully approved the LOAN")
+//    public void verify_if_the_request_successfully_approved_the_LOAN() throws Exception {
+//        jsonPath = response.jsonPath();
+//
+//        //
+//
+//
+////        socialSecurityNumber
+////        Assert.assertTrue("Social number NOT in text", jsonPath.get("request.socialSecurityNumber").getClass().getSimpleName().equals("String"));
+////        String socialNumber = jsonPath.get("request.socialSecurityNumber");
+////
+////        boolean checkingSocial = true;
+////
+////        System.out.println(socialNumber);
+////        System.out.println(socialNumber.length());
+////        if (socialNumber.length() == 9) {
+////            for (int i = 0; i < socialNumber.length(); i++) {
+////                if (!Character.isDigit(socialNumber.charAt(i))) {
+////                    checkingSocial = false;
+////                    break;
+////                }
+////            }
+////        } else {
+////            checkingSocial = false;
+////        }
+////        Assert.assertTrue("Wrong SocialNumber", checkingSocial);
+//
+////        leadOfferId
+////        Assert.assertTrue("Lead offer id NOT in text", jsonPath.get("request.leadOfferId").getClass().getSimpleName().equals("String"));
+//
+////        email
+//        Assert.assertTrue("Email NOT in text", jsonPath.get("request.email").getClass().getSimpleName().equals("String"));
+//        Assert.assertTrue("Wrong email", BunchOfTool.isValid(jsonPath.get("request.email")));
+//
+////        stateCode
+//        Assert.assertTrue("State code NOT in text", jsonPath.get("request.stateCode").getClass().getSimpleName().equals("String"));
+//        Assert.assertTrue("State code have more or less than two characters", jsonPath.get("request.stateCode").toString().length() == 2);
+////        requestedLoanAmount
+////        grossMonthlyIncome
+//
+//        ObjectMapper objectMapper = new ObjectMapper();
+//
+//        responseBody = objectMapper.readValue(response.asString(), ResponseBody.class);
+//
+//        System.out.println("______________________________________________________");
+//        System.out.println(responseBody.getOffers().get(0).getDescription());
+//        System.out.println(responseBody.getOffers().get(0).getAmount());
+//        System.out.println(responseBody.getOffers().get(0).getRepresentativeAPR());
+//        System.out.println(responseBody.getOffers().get(0).getOfferRefID());
+//
+//        System.out.println("________________________________________________________");
+//        System.out.println(responseBody.isAccepted());
+//        System.out.println(responseBody.getPartnerId());
+//        System.out.println(responseBody.getReference_id());
+//        System.out.println(responseBody.getCode());
+//        System.out.println(responseBody.getStatus());
+//        System.out.println(responseBody.getApiVersion());
+//
+//        System.out.println("__________________________________________________________");
+//        System.out.println(responseBody.getRequest().getEmail());
+//        System.out.println(responseBody.getRequest().getPersonalInfo().getFirstName());
+//        System.out.println(responseBody.getRequest().getPersonalInfo().getLastName());
+//        System.out.println(responseBody.getRequest().getPersonalInfo().getAddress().getStreetAddress());
+//        System.out.println(responseBody.getRequest().getPersonalInfo().getAddress().getCity());
+//        System.out.println(responseBody.getRequest().getPersonalInfo().getAddress().getCountryCode());
+//        System.out.println(responseBody.getRequest().getPersonalInfo().getAddress().getZip());
+//
+//
+//    }
+//
+//
+//    @Test
+//    public void test() {
+//        String str = "sdf";
+//        int i = 123;
+//
+//        System.out.println(str.getClass().getSimpleName());
+//        System.out.println(((Object) i).getClass().getSimpleName());
+//
+//        System.out.println();
+//        System.out.println();
+//
+//        System.out.println(new Double(4.8));
+//    }
+//
+//    @Test
+//    public void testing() throws Exception {
+//
+//
+//        PersonalInfo personalInfo = new PersonalInfo();
+//        personalInfo.setFirstName("Jennifer");
+//        personalInfo.setLastName("Smith");
+//        personalInfo.setDateOfBirth("19451009");
+//        personalInfo.setMobilePhone("3224340098");
+//        personalInfo.setHomePhone("4523452232");
+//
+//        Address address = new Address();
+//        address.setStreetAddress("123 Main Street");
+//        address.setCity("Miami");
+//        address.setZip("33125");
+//        address.setCountryCode("US");
+//
+//        personalInfo.setAddress(address);
+//
+//        BankInfo bankInfo = new BankInfo();
+//        bankInfo.setBankName("Chase");
+//        bankInfo.setAbaRoutingNumber("123456789");
+//        bankInfo.setAccountNumber("012345789");
+//        bankInfo.setAccountType(1);
+//        bankInfo.setAccountLength(6);
+//
+//        IncomeInfo incomeInfo = new IncomeInfo();
+//        incomeInfo.setIncomeType("Employment");
+//        incomeInfo.setPayrollType("DirectDeposit");
+//        incomeInfo.setPayrollFrequency(1);
+//        incomeInfo.setLastPayrollDate("20160915");
+//
+//        EmploymentInfo employmentInfo = new EmploymentInfo();
+//        employmentInfo.setEmployerName("ToysRUs");
+//        employmentInfo.setHireDate("20110516");
+//
+//        Request request = new Request();
+//        request.setProduction(false);
+//        request.setLanguage("en");
+//        request.setCurrency("USD");
+//        request.setCampaignId("11-50-newhope");
+//        request.setSocialSecurityNumber("123456780");
+//        request.setLeadOfferId("20160912-21EC2020-3AEA-4069-A2DD-08002B30309D");
+//        request.setEmail("test_customer@gmail.com");
+//        request.setStateCode("FL");
+//        request.setGrossMonthlyIncome(2800);
+//        request.setRequestedLoanAmount(1500);
+//
+//        request.setPersonalInfo(personalInfo);
+//        request.setBankInfo(bankInfo);
+//        request.setIncomeInfo(incomeInfo);
+//        request.setEmploymentInfo(employmentInfo);
+//
+//        ObjectMapper objectMapper = new ObjectMapper();
+//
+//        String body = objectMapper.writeValueAsString(request);
+//
+//        System.out.println(body);
+//
+//        Response response = RestAssured.given()
+//                .contentType(ContentType.JSON)
+//                .header("x-api-key", "b813b584-6932-4d0a-909f-43ae22df452a")
+//                .body(body)
+//                .post("https://partner-test.opploans.com/api/lde/v4/offer");
+//
+//        System.out.println(response.prettyPrint());
+//        System.out.println(response.statusCode());
+//
+//        responseBody = objectMapper.readValue(response.asString(), ResponseBody.class);
+//
+//        System.out.println(responseBody.getStatus());
+//
+//    }
+//
+
+
+
+
+
+    String requestBody = "{\n" +
+            "\"isProduction\": false,\n" +
+            "\"language\": \"en\",\n" +
+            "\"currency\": \"USD\",\n" +
+            "\"campaignId\": \"11-50-newhope\",\n" +
+            "\"socialSecurityNumber\":\"123456780\",\n" +
+            "\"leadOfferId\": \"20160912-21EC2020-3AEA-4069-A2DD-08002B30309D\",\n" +
+            "\"email\": \"test_customer@gmail.com\",\n" +
+            "\"stateCode\": \"FL\",\n" +
+            "\"grossMonthlyIncome\": 2800,\n" +
+            "\"personalInfo\": {\n" +
+            "\"firstName\": \"Jennifer\",\n" +
+            "\"lastName\": \"Smith\",\n" +
+            "\"dateOfBirth\": \"19451009\",\n" +
+            "\"address\": {\n" +
+            "\"streetAddress\": \"123 Main Street\",\n" +
+            "\"city\": \"Miami\",\n" +
+            "\"zip\": \"33125\",\n" +
+            "\"countryCode\":\"US\"\n" +
+            "},\n" +
+            "\"mobilePhone\": \"3224340098\",\n" +
+            "\"homePhone\": \"4523452232\"\n" +
+            "},\n" +
+            "\"bankInfo\": {\n" +
+            "\"bankName\": \"Chase\",\n" +
+            "\"abaRoutingNumber\": \"123456789\",\n" +
+            "\"accountNumber\": \"012345789\",\n" +
+            "\"accountType\": 1,\n" +
+            "\"accountLength\": 6\n" +
+            "},\n" +
+            "\"incomeInfo\": {\n" +
+            "\"incomeType\": \"Employment\",\n" +
+            "\"payrollType\": \"DirectDeposit\",\n" +
+            "\"payrollFrequency\": 1,\n" +
+            "\"lastPayrollDate\": \"20160915\"\n" +
+            "},\n" +
+            "\"employmentInfo\": {\n" +
+            "\"employerName\": \"ToysRUs\",\n" +
+            "\"hireDate\": \"20110516\"\n" +
+            "},\n" +
+            "\"requestedLoanAmount\": 1500}";
+
+    Response response;
+
+    @When("user should be able to hit the api")
+    public void user_should_be_able_to_hit_the_api() {
+
+
+        String baseURL = "https://partner-test.opploans.com/api/lde/v4/offer";
+
+        response = RestAssured.given().contentType(ContentType.JSON)
+                .header("x-api-key", "b813b584-6932-4d0a-909f-43ae22df452a")
+                .and()
+                .body(requestBody)
+                .when()
+                .post(baseURL);
+
+
+    }
+
+    @Then("user should be able to see responce")
+    public void user_should_be_able_to_see_responce() {
+        System.out.println(response.prettyPrint());
+        System.out.println(response.statusCode());
+
+        Assert.assertEquals(200, response.statusCode());
+
+        JsonPath jsonPath = response.jsonPath();
+
+        String status = jsonPath.get("status");
+
+        System.out.println(status);
+    }

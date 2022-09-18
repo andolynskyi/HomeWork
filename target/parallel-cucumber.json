@@ -1,0 +1,62 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 5,
+        "name": "Creating a POST request with APPROVED response",
+        "description": "",
+        "id": "all-scenarios-related-to-approved-loan;creating-a-post-request-with-approved-response",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 3448261029,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "hit POST method with valid header key \"b813b584-6932-4d0a-909f-43ae22df452a\" and resource \"/api/lde/v4/offer\" to create a request with approved loan",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"b813b584-6932-4d0a-909f-43ae22df452a\"",
+                  "offset": 38
+                },
+                {
+                  "val": "\"/api/lde/v4/offer\"",
+                  "offset": 90
+                }
+              ],
+              "location": "CreatingRequestWithAcceptedLoan_stepDefs.hit_POST_method_with_valid_header_key_and_resource_to_create_a_request_with_approved_loan(String,String)"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 80245598,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "verify if the request successfully approved the loan",
+            "match": {
+              "location": "CreatingRequestWithAcceptedLoan_stepDefs.verify_if_the_request_successfully_approved_the_loan()"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api"
+          }
+        ]
+      }
+    ],
+    "name": "All scenarios related to APPROVED loan",
+    "description": "",
+    "id": "all-scenarios-related-to-approved-loan",
+    "keyword": "Feature",
+    "uri": "src/test/resources/features/apiTests/acceptedOffer.feature",
+    "tags": []
+  }
+]

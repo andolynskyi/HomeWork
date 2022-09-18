@@ -1,0 +1,73 @@
+    String requestBody = "{\n" +
+            "\"isProduction\": false,\n" +
+            "\"language\": \"en\",\n" +
+            "\"currency\": \"USD\",\n" +
+            "\"campaignId\": \"11-50-newhope\",\n" +
+            "\"socialSecurityNumber\":\"123456780\",\n" +
+            "\"leadOfferId\": \"20160912-21EC2020-3AEA-4069-A2DD-08002B30309D\",\n" +
+            "\"email\": \"test_customer@gmail.com\",\n" +
+            "\"stateCode\": \"FL\",\n" +
+            "\"grossMonthlyIncome\": 2800,\n" +
+            "\"personalInfo\": {\n" +
+            "\"firstName\": \"Jennifer\",\n" +
+            "\"lastName\": \"Smith\",\n" +
+            "\"dateOfBirth\": \"19451009\",\n" +
+            "\"address\": {\n" +
+            "\"streetAddress\": \"123 Main Street\",\n" +
+            "\"city\": \"Miami\",\n" +
+            "\"zip\": \"33125\",\n" +
+            "\"countryCode\":\"US\"\n" +
+            "},\n" +
+            "\"mobilePhone\": \"3224340098\",\n" +
+            "\"homePhone\": \"4523452232\"\n" +
+            "},\n" +
+            "\"bankInfo\": {\n" +
+            "\"bankName\": \"Chase\",\n" +
+            "\"abaRoutingNumber\": \"123456789\",\n" +
+            "\"accountNumber\": \"012345789\",\n" +
+            "\"accountType\": 1,\n" +
+            "\"accountLength\": 6\n" +
+            "},\n" +
+            "\"incomeInfo\": {\n" +
+            "\"incomeType\": \"Employment\",\n" +
+            "\"payrollType\": \"DirectDeposit\",\n" +
+            "\"payrollFrequency\": 1,\n" +
+            "\"lastPayrollDate\": \"20160915\"\n" +
+            "},\n" +
+            "\"employmentInfo\": {\n" +
+            "\"employerName\": \"ToysRUs\",\n" +
+            "\"hireDate\": \"20110516\"\n" +
+            "},\n" +
+            "\"requestedLoanAmount\": 1500}";
+
+    Response response;
+
+    @When("user should be able to hit the api")
+    public void user_should_be_able_to_hit_the_api() {
+
+
+        String baseURL = "https://partner-test.opploans.com/api/lde/v4/offer";
+
+        response = RestAssured.given().contentType(ContentType.JSON)
+                .header("x-api-key", "b813b584-6932-4d0a-909f-43ae22df452a")
+                .and()
+                .body(requestBody)
+                .when()
+                .post(baseURL);
+
+
+    }
+
+    @Then("user should be able to see responce")
+    public void user_should_be_able_to_see_responce() {
+        System.out.println(response.prettyPrint());
+        System.out.println(response.statusCode());
+
+        Assert.assertEquals(200, response.statusCode());
+
+        JsonPath jsonPath = response.jsonPath();
+
+        String status = jsonPath.get("status");
+
+        System.out.println(status);
+    }
