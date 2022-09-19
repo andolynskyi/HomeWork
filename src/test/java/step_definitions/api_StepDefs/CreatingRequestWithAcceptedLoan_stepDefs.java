@@ -80,6 +80,7 @@ public class CreatingRequestWithAcceptedLoan_stepDefs {
                 .body(jsBody)
                 .post(Config.getProperty("baseURL") + resource);
 
+        System.out.println(response.asString());
         Assert.assertEquals("Status code NOT 200", 200, response.statusCode());
     }
 

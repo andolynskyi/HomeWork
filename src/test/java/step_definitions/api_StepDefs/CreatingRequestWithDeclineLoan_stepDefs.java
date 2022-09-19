@@ -82,6 +82,7 @@ public class CreatingRequestWithDeclineLoan_stepDefs {
                 .body(jsBody)
                 .post(Config.getProperty("baseURL") + resource);
 
+        System.out.println(response.asString());
         Assert.assertEquals("Status code NOT 200", 200, response.statusCode());
 
     }
@@ -144,13 +145,13 @@ public class CreatingRequestWithDeclineLoan_stepDefs {
 
 //        stateCode
         Assert.assertEquals("State code NOT in String", "String", responseBody.getRequest().getStateCode().getClass().getSimpleName());
-        Assert.assertEquals("State Code length NOT 2", 2, responseBody.getRequest().getStateCode().length());
+        Assert.assertEquals("State Code length NOT 2", 2,responseBody.getRequest().getStateCode().length());
 
 //        requestedLoanAmount
-        Assert.assertEquals("Requested loan amount NOT in Integer", "Integer", ((Object) responseBody.getRequest().getRequestedLoanAmount()).getClass().getSimpleName());
+        Assert.assertEquals("Requested loan amount NOT in Integer", "Integer",((Object) responseBody.getRequest().getRequestedLoanAmount()).getClass().getSimpleName());
 
 //        grossMonthlyIncome
-        Assert.assertEquals("Gross Monthly income", "Integer", ((Object) responseBody.getRequest().getGrossMonthlyIncome()).getClass().getSimpleName());
+        Assert.assertEquals("Gross Monthly income", "Integer",((Object) responseBody.getRequest().getGrossMonthlyIncome()).getClass().getSimpleName());
 
 
     }
