@@ -12,7 +12,7 @@
         "steps": [
           {
             "result": {
-              "duration": 3448261029,
+              "duration": 3428884458,
               "status": "passed"
             },
             "line": 6,
@@ -34,7 +34,7 @@
           },
           {
             "result": {
-              "duration": 80245598,
+              "duration": 87099556,
               "status": "passed"
             },
             "line": 7,
@@ -57,6 +57,126 @@
     "id": "all-scenarios-related-to-approved-loan",
     "keyword": "Feature",
     "uri": "src/test/resources/features/apiTests/acceptedOffer.feature",
+    "tags": []
+  },
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 4,
+        "name": "Creating a POST request with DECLINE response",
+        "description": "",
+        "id": "all-scenarios-related-to-decline-loan;creating-a-post-request-with-decline-response",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 344746335,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "hit POST method with valid header key \"b813b584-6932-4d0a-909f-43ae22df452a\" and resource \"/api/lde/v4/offer\" to create a request with decline loan",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"b813b584-6932-4d0a-909f-43ae22df452a\"",
+                  "offset": 38
+                },
+                {
+                  "val": "\"/api/lde/v4/offer\"",
+                  "offset": 90
+                }
+              ],
+              "location": "CreatingRequestWithDeclineLoan_stepDefs.hit_POST_method_with_valid_header_key_and_resource_to_create_a_request_with_decline_loan(String,String)"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 9124794,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "verify if the request successfully decline the loan",
+            "match": {
+              "location": "CreatingRequestWithDeclineLoan_stepDefs.verify_if_the_request_successfully_decline_the_loan()"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api"
+          }
+        ]
+      }
+    ],
+    "name": "All scenarios related to DECLINE loan",
+    "description": "",
+    "id": "all-scenarios-related-to-decline-loan",
+    "keyword": "Feature",
+    "uri": "src/test/resources/features/apiTests/declineOffer.feature",
+    "tags": []
+  },
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 4,
+        "name": "Creating POST request with missing request data",
+        "description": "",
+        "id": "all-test-cases-related-when-the-system-doesn-t-make-decision;creating-post-request-with-missing-request-data",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 292694958,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "hit POST method with valid header key \"b813b584-6932-4d0a-909f-43ae22df452a\" and resource \"/api/lde/v4/offer\" to create a request with missing data",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"b813b584-6932-4d0a-909f-43ae22df452a\"",
+                  "offset": 38
+                },
+                {
+                  "val": "\"/api/lde/v4/offer\"",
+                  "offset": 90
+                }
+              ],
+              "location": "CreatingPOSTRequestWithMissingData.hit_POST_method_with_valid_header_key_and_resource_to_create_a_request_with_missing_data(String,String)"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 7350073,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "verify if the request successfully decline the loan and empty fields empty",
+            "match": {
+              "location": "CreatingPOSTRequestWithMissingData.verify_if_the_request_successfully_decline_the_loan_and_empty_fields_empty()"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api"
+          }
+        ]
+      }
+    ],
+    "name": "All test cases related when the system doesn\u0027t make decision",
+    "description": "",
+    "id": "all-test-cases-related-when-the-system-doesn-t-make-decision",
+    "keyword": "Feature",
+    "uri": "src/test/resources/features/apiTests/noDecision.feature",
     "tags": []
   }
 ]

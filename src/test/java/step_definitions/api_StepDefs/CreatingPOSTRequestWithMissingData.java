@@ -8,25 +8,22 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.Assert;
-import org.junit.Test;
 import utilities.AdditionToolsInTests;
 import utilities.Config;
 
-import java.util.ArrayList;
-import java.util.List;
+public class CreatingPOSTRequestWithMissingData {
 
-public class CreatingRequestWithDeclineLoan_stepDefs {
-
+    ObjectMapper objectMapper = new ObjectMapper();
     Response response;
     ResponseBody responseBody;
-    ObjectMapper objectMapper = new ObjectMapper();
 
-    @Given("hit POST method with valid header key {string} and resource {string} to create a request with decline loan")
-    public void hit_POST_method_with_valid_header_key_and_resource_to_create_a_request_with_decline_loan(String headerKey, String resource) throws Exception {
+    @Given("hit POST method with valid header key {string} and resource {string} to create a request with missing data")
+    public void hit_POST_method_with_valid_header_key_and_resource_to_create_a_request_with_missing_data(String headerKey, String resource) throws Exception {
 
+        //Creating a Java Object with missing firstName and lastName
         PersonalInfo personalInfo = new PersonalInfo();
-        personalInfo.setFirstName("Jennifer");
-        personalInfo.setLastName("Smith");
+        personalInfo.setFirstName("");
+        personalInfo.setLastName("");
         personalInfo.setDateOfBirth("19451009");
         personalInfo.setMobilePhone("3224340098");
         personalInfo.setHomePhone("4523452232");
@@ -61,7 +58,7 @@ public class CreatingRequestWithDeclineLoan_stepDefs {
         request.setLanguage("en");
         request.setCurrency("USD");
         request.setCampaignId("11-50-newhope");
-        request.setSocialSecurityNumber("123450000");
+        request.setSocialSecurityNumber("123456780");
         request.setLeadOfferId("20160912-21EC2020-3AEA-4069-A2DD-08002B30309D");
         request.setEmail("test_customer@gmail.com");
         request.setStateCode("FL");
@@ -83,11 +80,11 @@ public class CreatingRequestWithDeclineLoan_stepDefs {
                 .post(Config.getProperty("baseURL") + resource);
 
         Assert.assertEquals("Status code NOT 200", 200, response.statusCode());
-
     }
 
-    @Then("verify if the request successfully decline the loan")
-    public void verify_if_the_request_successfully_decline_the_loan() throws Exception {
+    @Then("verify if the request successfully decline the loan and empty fields empty")
+    public void verify_if_the_request_successfully_decline_the_loan_and_empty_fields_empty() throws Exception {
+
 
         responseBody = objectMapper.readValue(response.asString(), ResponseBody.class);
 
@@ -95,7 +92,7 @@ public class CreatingRequestWithDeclineLoan_stepDefs {
         Assert.assertFalse("Accepted", responseBody.isAccepted());
         Assert.assertFalse("Partner id EMPTY", String.valueOf(responseBody.getPartnerId()).isEmpty());
         Assert.assertFalse("Reference id", responseBody.getReference_id().isEmpty());
-        Assert.assertEquals("Code NOT 201", 315, responseBody.getCode());
+        Assert.assertEquals("Code NOT 201", 341, responseBody.getCode());
         Assert.assertEquals("Code NOT 201", "DECLINED", responseBody.getStatus());
         Assert.assertEquals("Code NOT 201", "4.8", responseBody.getApiVersion());
 
@@ -108,8 +105,10 @@ public class CreatingRequestWithDeclineLoan_stepDefs {
         homePhoneNumber
          */
 
-        Assert.assertEquals("First name NOT equal", "Jennifer", responseBody.getRequest().getPersonalInfo().getFirstName());
-        Assert.assertEquals("Last name NOT equal", "Smith", responseBody.getRequest().getPersonalInfo().getLastName());
+        // Checking missing data
+        Assert.assertTrue("First name NOT EMPTY", responseBody.getRequest().getPersonalInfo().getFirstName().isEmpty());
+        Assert.assertTrue("Last name NOT EMPTY", responseBody.getRequest().getPersonalInfo().getLastName().isEmpty());
+
         Assert.assertEquals("Date of birth NOT equal", "19451009", responseBody.getRequest().getPersonalInfo().getDateOfBirth());
         Assert.assertEquals("Mobile phone number NOT equal", "3224340098", responseBody.getRequest().getPersonalInfo().getMobilePhone());
         Assert.assertEquals("Home phone number NOT equal", "4523452232", responseBody.getRequest().getPersonalInfo().getHomePhone());
